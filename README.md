@@ -15,6 +15,6 @@ Terraform config files to spin up an EC2 instance and provision it using shell s
 ### Usage:
 - Setup AWS IAM Roles, API access, ssh key pair
 - Copy private key to this dir
-- Create a *<name>.tfvars* file with your API access info
+- Create a *\<name\>.tfvars* file with your API access info
 - Modify & Verify all of the *\*.tf* files
 - Run the make file
