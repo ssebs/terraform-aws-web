@@ -23,5 +23,9 @@ resource "aws_instance" "web1" {
             "scripts/web.sh"
         ]
     }
+
+    provisioner "local-exec" {
+        command = "sleep 20; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ubuntu --private-key Test1.pem -i '${aws_instance.web1.public_ip},' ansible/playbooks/patch.yml"
+    }
 }
 
