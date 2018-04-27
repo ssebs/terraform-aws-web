@@ -38,7 +38,23 @@
     docker_container:
       name: ssebs-website
       image: ssebs/ssebs-www
-      exposed_ports:
-        - 80
-        - 443
+      user: root
+      published_ports:
+        - "80:80"
     
+#  - name: Setup docker container - nginx-LE reverse proxy
+#    docker_container:
+#      name: ssebs-ssl
+#      image: bradjonesllc/docker-nginx-letsencrypt
+#      user: root
+#      published_ports:
+#        - "80:80"
+#        - "443:443"
+#      env:
+#         CERTS: "ssebs.com,home.ssebs.com,cms.ssebs.com"
+#         EMAIL: "ssebs@ssebs.com"
+#      volumes:
+#        - "/etc/ssl/dhparam:/etc/ssl/dhparam"
+#        - "/srv/letsencrypt:/etc/letsencrypt"
+
+

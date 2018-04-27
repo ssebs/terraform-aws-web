@@ -1,9 +1,17 @@
+# eip for web1 resource in aws
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = "${aws_instance.web1.id}"
+  allocation_id = "${aws_eip.web_eip.id}"
+}
+
+
 # test web1 resource for aws
 resource "aws_instance" "web1" {
     ami = "ami-6dfe5010"
     instance_type = "t2.micro"
     key_name = "Test1"
     security_groups = ["Web/Email"]
+    associate_public_ip_address = true
     
     tags {
         Name = "web1"
@@ -30,3 +38,7 @@ resource "aws_instance" "web1" {
     }
 }
 
+resource "aws_eip" "web_eip" {
+  instance = "${aws_instance.web1.id}"
+  vpc = true
+}
